@@ -72,6 +72,7 @@ button {
     color: var(--colour-white);
 }
 
+// Loader start
 .loader-container {
     position: absolute;
     top: 50%;
@@ -95,4 +96,9 @@ button {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+// Loader end
+
+.highlight {
+    background-color: var(--colour-yellow);
 }

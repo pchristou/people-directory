@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { LookupProvider } from '@shared/models/lookup-provider.model';
 import { User } from '@shared/models/user.model';
 import {HttpClient} from '@angular/common/http';
@@ -9,6 +9,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class UserService implements LookupProvider {
 
+    // Can also inject this via a provider to allow different services with different base urls
     private readonly apiUrl = 'http://localhost:5157/api/v1/users/search';
 
     constructor(private http: HttpClient) {}

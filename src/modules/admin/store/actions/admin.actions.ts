@@ -1,5 +1,4 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { User } from "@shared/models/user.model";
 import { UserState } from "../reducers/user.reducer";
 
 export const AdminActions = createActionGroup({

@@ -2,7 +2,7 @@ import { Component, ContentChild, EventEmitter, Input, OnDestroy, OnInit, Output
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { DEBOUNCE_DELAY } from "@shared/constants";
-import { AsyncPipe, CommonModule, NgTemplateOutlet } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { TranslocoPipe } from "@jsverse/transloco";
 import { Subject } from "rxjs";
 
@@ -37,6 +37,11 @@ export class TypeaheadComponent<T> implements OnInit, OnDestroy {
         ).subscribe(term => {
             this.search.emit(term || '');
         });
+    }
+
+    // Getter allowing the consumer to highlight the match
+    get searchTerm(): string {
+        return this.searchControl.value || '';
     }
 
     selectResult(item: T): void {

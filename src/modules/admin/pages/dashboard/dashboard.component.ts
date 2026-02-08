@@ -8,13 +8,15 @@ import { GlobalState } from "../../store/admin.state";
 import { selectUserSectionLoading, selectUsers } from "../../store/selectors/admin.selectors";
 import { Observable } from "rxjs";
 import { AsyncPipe } from "@angular/common";
+import { HighlightPipe } from "@shared/pipes/highlight.pipe";
 
 @Component({
     selector: 'app-landing',
     imports: [
         TypeaheadComponent,
         TranslocoPipe,
-        AsyncPipe
+        AsyncPipe,
+        HighlightPipe
     ],
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.scss',
