@@ -11,7 +11,7 @@
     }
   },
   "projects": {
-    "Aiimi": {
+    "PeopleDirectory": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -61,10 +61,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Aiimi:build:production"
+              "buildTarget": "PeopleDirectory:build:production"
             },
             "development": {
-              "buildTarget": "Aiimi:build:development"
+              "buildTarget": "PeopleDirectory:build:development"
             }
           },
           "defaultConfiguration": "development"
