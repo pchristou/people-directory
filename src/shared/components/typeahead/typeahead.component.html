@@ -1,0 +1,30 @@
+<div class="typeahead">
+    <input
+            #typeaheadValue
+            name="typeahead"
+            class="typeahead__textbox"
+            type="text"
+            [formControl]="searchControl"
+            autocomplete="off"
+            placeholder="{{ 'searchPlaceholder' | transloco }}"
+            data-e2e="typeaheadInput"
+    >
+    <div>
+        <button class="typeahead__button" (click)="submitSearch(typeaheadValue.value)">
+            <div class="typeahead__button-label">{{ 'go' | transloco }}</div>
+        </button>
+    </div>
+
+    @if (results$ | async; as results) {
+        <ul class="typeahead__dropdown">
+        @for (item of results; track item) {
+            <li>
+              {{ item.name }}
+            </li>
+        }
+        @if (results.length === 0) {
+            <li>No results found</li>
+        }
+        </ul>
+  }
+</div>
