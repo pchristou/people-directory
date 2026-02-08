@@ -1,0 +1,23 @@
+/**
+    Entry point for styles
+    Colours and typography based on brand guidelines: https://partners.aiimi.com/assets/b3a14096-1ea7-4894-ae40-5e7d165b9cf1
+ */
+@use 'styles/colours';
+@use 'styles/fonts';
+@use 'styles/typography';
+
+html {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: var(--font-default), sans-serif;
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-normal);
+    color: var(--color-stone);
+    background-color: var(--color-ink);
+}
