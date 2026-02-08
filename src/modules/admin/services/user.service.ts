@@ -9,26 +9,14 @@ import {HttpClient} from '@angular/common/http';
 })
 export class UserService implements LookupProvider {
 
-    private readonly apiUrl = 'http://localhost:5157/api/v1/users';
+    private readonly apiUrl = 'http://localhost:5157/api/v1/users/search';
 
     constructor(private http: HttpClient) {}
 
     /**
-     * Fetches all users from the API
+     * Fetch users matching the searchTerm from the API
      */
-    getAllUsers(): Observable<User[]> {
-        return this.http.get<User[]>(this.apiUrl);
-    }
-
-    search(term: string): Observable<User | any> {
-        return of([]);
-    }
-
-    /**
-     * Fetches a single person by their ID
-     * @param id The unique identifier of the user
-     */
-    getSingleUser(id: number): Observable<User> {
-        return this.http.get<User>(`${this.apiUrl}/${id}`);
+    search(searchTerm: string): Observable<User | any> {
+        return this.http.get<User[]>(this.apiUrl, { params: { name: searchTerm } });
     }
 }

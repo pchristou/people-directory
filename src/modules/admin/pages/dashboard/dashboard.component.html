@@ -1,6 +1,15 @@
 <div class="dashboard">
     <div class="dashboard__typeahead">
-        <app-typeahead (submit)="onTypeaheadSubmit($event)"></app-typeahead>
+        <app-typeahead
+                [loading]="isLoading$ | async"
+                [results]="users$ | async"
+                (search)="onSearch($event)"
+                (select)="onUserSelected($event)">
+        >
+            <ng-template #itemResultsTemplate let-user>
+                {{ user.fullName }}
+            </ng-template>
+        </app-typeahead>
     </div>
     <div class="dashboard__button">
         <button>{{ 'newUser' | transloco }}</button>

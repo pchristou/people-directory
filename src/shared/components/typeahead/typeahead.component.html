@@ -1,30 +1,48 @@
 <div class="typeahead">
-    <input
-            #typeaheadValue
-            name="typeahead"
-            class="typeahead__textbox"
-            type="text"
-            [formControl]="searchControl"
-            autocomplete="off"
-            placeholder="{{ 'searchPlaceholder' | transloco }}"
-            data-e2e="typeaheadInput"
-    >
-    <div>
-        <button class="typeahead__button" (click)="submitSearch(typeaheadValue.value)">
-            <div class="typeahead__button-label">{{ 'go' | transloco }}</div>
-        </button>
+    <div class="typeahead__search">
+        <input
+                #typeaheadValue
+                autocomplete="off"
+                data-e2e="typeaheadInput"
+                class="typeahead__textbox"
+                name="typeahead"
+                type="text"
+                [formControl]="searchControl"
+                (keydown.enter)="submitSearch()"
+                placeholder="{{ 'searchPlaceholder' | transloco }}"
+        >
+            <button class="typeahead__button" (click)="submitSearch()">
+                <div class="typeahead__button-label">{{ 'go' | transloco }}</div>
+            </button>
     </div>
 
-    @if (results$ | async; as results) {
-        <ul class="typeahead__dropdown">
-        @for (item of results; track item) {
-            <li>
-              {{ item.name }}
-            </li>
-        }
-        @if (results.length === 0) {
-            <li>No results found</li>
-        }
-        </ul>
-  }
+    @if (loading) {
+        <div class="loader-container">
+            <span class="loader"></span> <p>{{ 'loading' | transloco }}</p>
+        </div>
+    }
+
+    @if (!loading && results && results.length > 0) {
+        <div class="typeahead__results-container">
+
+                <ul class="typeahead__list">
+                @for (item of results; track item) {
+                    <li (click)="selectResult(item)" class="typeahead__item">
+                        <ng-container
+                                [ngTemplateOutlet]="itemResultsTemplate || defaultTemplate"
+                                [ngTemplateOutletContext]="{ $implicit: item }">
+                        </ng-container>
+                    </li>
+                }
+                @if (results.length === 0) {
+                    <li class="typeahead__item typeahead__item--empty">No results found</li>
+                }
+                </ul>
+
+        </div>
+    }
+    <!-- some defaults provided -->
+    <ng-template #defaultTemplate let-item>
+        {{ item.fullName || item.name }}
+    </ng-template>
 </div>
