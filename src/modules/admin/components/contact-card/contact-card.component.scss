@@ -6,8 +6,7 @@
     flex-direction: column;
     font-size: var(--font-size-sm);
     min-width: 0;
-    padding: 12px;
-    align-items: center;
+    padding: 12px 24px 4px 25%; // unusual but gets overflow ellipsis code to work. Would seek a more elegant solution given more time
     text-align: center;
     width: 100%;
     overflow: hidden;
