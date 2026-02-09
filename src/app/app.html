@@ -1,4 +1,12 @@
 <main class="main">
+    <div class="lang-switcher">
+        <span (click)="changeLanguage('en')" title="English">
+            🇬🇧
+        </span>
+        <span (click)="changeLanguage('fr')" title="Français">
+            🇫🇷
+        </span>
+    </div>
     <router-outlet />
 </main>
 

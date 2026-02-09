@@ -6,6 +6,13 @@
   "noResults": "No results found",
   "go": "Go!",
   "form": {
+    "fields": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "jobTitle": "Job title",
+      "phone": "Phone",
+      "email": "Email"
+    },
     "errors": {
       "DUPLICATE_EMAIL": "This email address is already taken.",
       "DATA_VALIDATION": "Data validation failed.",

@@ -6,6 +6,13 @@
   "noResults": "Aucun résultat trouvé",
   "go": "Aller!",
   "form": {
+    "fields": {
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "jobTitle": "Poste",
+      "phone": "Téléphone",
+      "email": "Email"
+    },
     "errors": {
       "DUPLICATE_EMAIL": "Cette adresse e-mail est déjà utilisée.",
       "DATA_VALIDATION": "La validation des données a échoué.",
