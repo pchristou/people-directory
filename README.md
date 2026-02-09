@@ -1,5 +1,7 @@
 # People Directory
 
+![People Directory Homepage](directory.png)
+
 ## Features
 - Ngrx for state management
 - Language support for EN and FR (in places)
