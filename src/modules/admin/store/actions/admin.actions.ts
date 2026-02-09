@@ -15,15 +15,24 @@ export const AdminActions = createActionGroup({
         'Search Users Failure': props<{ error: string }>(),
 
         // When the user clicks a result item in the list
-        'Add User': props<{ selectedUser: UserState['selectedUser'] }>(),
+        'Select User': props<{ selectedUser: User }>(),
 
         // Dispatched when attempting to add a user
-        'Add User Attempt': props<{ selectedUser: UserState['selectedUser'] }>(),
+        'Select User Attempt': props<{ selectedUser: User }>(),
 
         // When the user has already been added
         'Duplicate User Selected': props<{ message: string }>(),
 
         // Clear the results and input
         'Clear Selection': emptyProps(),
+
+        // When the user clicks "Create" in the form
+        'Create User': props<{ user: User }>(),
+
+        // Dispatched when the API successfully saves the user
+        'Create User Success': props<{ user: User }>(),
+
+        // Dispatched if the save fails (e.g., server error)
+        'Create User Failure': props<{ error: string }>()
     }
 });

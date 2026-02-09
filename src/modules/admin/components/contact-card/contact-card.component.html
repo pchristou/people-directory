@@ -1,17 +1,17 @@
 <div class="contact-card">
     <div class="contact-card__info">
-        <h3 class="contact-card__name">
+        <h3 class="contact-card__row contact-card__name" [title]="user.fullName">
             {{ user.fullName }}
         </h3>
 
-        <p class="contact-card__title">
+        <p class="contact-card__row contact-card__jobTitle" [title]="user.jobTitle">
             {{ user.jobTitle }}
         </p>
 
-          <span class="contact-card__detail contact-card__detail--phone">
+          <span class="contact-card__row contact-card__phone" [title]="user.phone">
             {{ user.phone }}
           </span>
-                <span class="contact-card__detail contact-card__detail--email">
+                <span class="contact-card__row contact-card__email" [title]="user.email">
             {{ user.email }}
           </span>
     </div>

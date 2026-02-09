@@ -1,7 +1,6 @@
 import { AdminActions } from "../actions/admin.actions";
 import { User } from "@shared/models/user.model";
 import { createReducer, on } from "@ngrx/store";
-import { AdminEffects } from "../effects/admin.effects";
 
 export interface UserState {
     selectedUser: User | null;
@@ -21,7 +20,7 @@ const initialState: UserState = {
 
 export const userReducer = createReducer(
     initialState,
-    on(AdminActions.addUser, (state, { selectedUser }) => {
+    on(AdminActions.selectUser, (state, { selectedUser }) => {
 
         if (!selectedUser) {
             return {
@@ -45,6 +44,11 @@ export const userReducer = createReducer(
         ...state,
         selectedUser: null,
         userResults: []
+    })),
+    on(AdminActions.createUserSuccess, (state, { user }) => ({
+        ...state,
+        selectedUsers: [...state.selectedUsers, user],
+        loading: false
     })),
     on(AdminActions.searchUsers, (state) => ({
         ...state,

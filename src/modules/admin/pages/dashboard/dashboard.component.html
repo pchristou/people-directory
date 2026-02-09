@@ -16,8 +16,11 @@
                 [users]="(selectedUsers$ | async) || []">
         </app-contact-card-list>
     </div>
+    <div class="dashboard__form">
+        <router-outlet></router-outlet>
+    </div>
     <div class="dashboard__button">
-        <button>{{ 'newUser' | transloco }}</button>
+        <button routerLink="new-user">{{ 'newUser' | transloco }}</button>
     </div>
     <app-toast-container></app-toast-container>
 </div>

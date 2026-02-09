@@ -11,6 +11,7 @@ import { AsyncPipe } from "@angular/common";
 import { HighlightPipe } from "@shared/pipes/highlight.pipe";
 import { ToastContainerComponent } from "@shared/components/toast-container/toast-container.component";
 import { ContactCardListComponent } from "../../components/contact-card-list/contact-card-list.component";
+import { RouterLink, RouterOutlet } from "@angular/router";
 
 @Component({
     selector: 'app-landing',
@@ -20,7 +21,9 @@ import { ContactCardListComponent } from "../../components/contact-card-list/con
         AsyncPipe,
         HighlightPipe,
         ToastContainerComponent,
-        ContactCardListComponent
+        ContactCardListComponent,
+        RouterLink,
+        RouterOutlet
     ],
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.scss',
@@ -47,6 +50,6 @@ export class DashboardComponent implements OnInit {
     }
 
     onUserSelected(user: User) {
-        this.store.dispatch(AdminActions.addUserAttempt({ selectedUser: user }));
+        this.store.dispatch(AdminActions.selectUserAttempt({ selectedUser: user }));
     }
 }

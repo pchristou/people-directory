@@ -1,3 +1,5 @@
+@use 'z-index' as *;
+
 $border-radius-results: 18px;
 $border-radius-search: 20px;
 $height: 40px;
@@ -5,6 +7,11 @@ $height: 40px;
 .typeahead {
     font-size: var(--font-size-sm);
     position: relative; // This is the anchor
+
+    .loader-container {
+        margin-top: -40px;
+        color: var(--colour-white);
+    }
 
     &__search {
         display: flex;
@@ -16,12 +23,11 @@ $height: 40px;
         top: 100%;
         left: 0;
         right: 0;
-
-        //padding: 8px 16px;
         background-color: var(--colour-white);
         border: 1px solid var(--colour-brand-pink);
         border-radius: 18px;
         margin-top: 8px;
+        z-index: z('dropdown');
     }
 
     &__list {

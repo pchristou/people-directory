@@ -19,12 +19,12 @@ export const ADMIN_ROUTES: Routes = [
         ],
         children: [
             {
-                path: 'new',
-                component: UserFormComponent // The form that appears inside the shell
+                path: 'new-user',
+                component: UserFormComponent
             },
             {
                 path: 'edit/:id',
-                component: UserFormComponent // Reuse the same form for editing
+                component: UserFormComponent // Future feature, edit users
             }
         ]
     }

@@ -16,7 +16,7 @@
             </button>
     </div>
 
-    @if (loading) {
+    @if (loading && searchControl.value!.length >= MIN_CHAR_SEARCH) {
         <div class="loader-container">
             <span class="loader"></span> <p>{{ 'loading' | transloco }}</p>
         </div>

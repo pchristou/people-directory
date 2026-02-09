@@ -1,7 +1,18 @@
 {
+  "create": "Créer",
   "loading": "Chargement",
   "searchPlaceholder": "rechercher un utilisateur…",
   "newUser": "Nouvel utilisateur +",
   "noResults": "Aucun résultat trouvé",
-  "go": "Aller!"
+  "go": "Aller!",
+  "form": {
+    "errors": {
+      "DUPLICATE_EMAIL": "Cette adresse e-mail est déjà utilisée.",
+      "DATA_VALIDATION": "La validation des données a échoué.",
+      "UNEXPECTED": "Une erreur inattendue est survenue."
+    },
+    "placeholders": {
+      "email": "Enter email address"
+    }
+  }
 }

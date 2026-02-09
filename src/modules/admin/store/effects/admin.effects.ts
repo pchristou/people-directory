@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { concatMap, of, take, tap } from 'rxjs';
+import { concatMap, exhaustMap, of, take, tap } from 'rxjs';
 import { map, switchMap, catchError, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { LookupProvider } from "@shared/models/lookup-provider.model";
 import { AdminActions } from "../actions/admin.actions";
@@ -8,15 +8,42 @@ import { Store } from "@ngrx/store";
 import { selectSelectedUsers } from "../selectors/admin.selectors";
 import { ToastService } from "@shared/services/toast.service";
 import { DEBOUNCE_DELAY, MIN_CHAR_SEARCH } from "@shared/constants";
+import { UserService } from "../../services/user.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { TranslocoService } from "@jsverse/transloco";
 
 @Injectable()
 export class AdminEffects {
     private actions$ = inject(Actions);
-    private lookupProvider = inject(LookupProvider);
+    private userService = inject(LookupProvider);
     private store = inject(Store);
     private toastService = inject(ToastService);
+    private route = inject(ActivatedRoute);
+    private router = inject(Router);
+    private translocoService = inject(TranslocoService);
 
-    // This effect handles the "User Search" logic specifically
+    createUser$ = createEffect(() => {
+            return this.actions$.pipe(
+                ofType(AdminActions.createUser),
+                // exhaustMap prevents double-submits if the user clicks 'Create' twice
+                exhaustMap(({ user }) =>
+                    (this.userService as UserService).saveUser(user).pipe(
+                        map((savedUser) => AdminActions.createUserSuccess({ user: savedUser })),
+                        tap(() => {
+                            this.toastService.show('User created successfully!', 'success');
+                            void this.router.navigate(['../'], { relativeTo: this.route });
+                        }),
+                        catchError(({ error }) => {
+                            const exception = this.translocoService.translate(error.errorCode) ?? 'An error was encountered while creating the user.';
+                            this.toastService.show(exception, 'error', false);
+                            return of(AdminActions.createUserFailure({ error: exception }));
+                        })
+                    )
+                )
+            );
+        }
+    );
+
     searchUsers$ = createEffect(() => {
         return this.actions$.pipe(
             // Listen for the search trigger
@@ -32,7 +59,7 @@ export class AdminEffects {
                     return of(AdminActions.searchUsersSuccess({ results: [] }));
                 }
 
-                return this.lookupProvider.search(searchTerm).pipe(
+                return this.userService.search(searchTerm).pipe(
                     // Dispatch success to update the userSection in the reducer
                     map((results) => AdminActions.searchUsersSuccess({ results })),
 
@@ -47,7 +74,7 @@ export class AdminEffects {
 
     userSelected$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(AdminActions.addUserAttempt),
+            ofType(AdminActions.selectUserAttempt),
             // 1. Get the current list of users from the Store
             concatMap((action) =>
                 this.store.select(selectSelectedUsers).pipe(
@@ -67,7 +94,7 @@ export class AdminEffects {
 
                 // 3. Proceed: Do nothing or dispatch a "Confirmed" action
                 // Note: If you do this, your Reducer should listen to a 'Add User Confirmed' action
-                return AdminActions.addUser({ selectedUser: selectedUser! });
+                return AdminActions.selectUser({ selectedUser: selectedUser! });
             })
         )
     );
@@ -90,7 +117,7 @@ export class AdminEffects {
     showSuccessToast$ = createEffect(
         () =>
             this.actions$.pipe(
-                ofType(AdminActions.addUser),
+                ofType(AdminActions.selectUser),
                 tap(({ selectedUser }) => {
                     this.toastService.show(`Added ${selectedUser!.firstName} successfully.`);
                 })

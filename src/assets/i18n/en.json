@@ -1,7 +1,18 @@
 {
+  "create": "Create",
   "loading": "Loading",
   "searchPlaceholder": "Search for a user…",
   "newUser": "New User +",
   "noResults": "No results found",
-  "go": "Go!"
+  "go": "Go!",
+  "form": {
+    "errors": {
+      "DUPLICATE_EMAIL": "This email address is already taken.",
+      "DATA_VALIDATION": "Data validation failed.",
+      "UNEXPECTED": "An unexpected error occurred."
+    },
+    "placeholders": {
+      "email": "Enter email address"
+    }
+  }
 }

@@ -1,0 +1,17 @@
+$z-layers: (
+        "content": 1,
+        "sticky-header": 10,
+        "dropdown": 100,
+        "toast": 200,
+        "modal-overlay": 300,
+        "modal-content": 310,
+        "tooltip": 400
+);
+
+// Fetch the index
+@function z($layer) {
+    @if not map-has-key($z-layers, $layer) {
+        @error "No z-index found for layer: #{$layer}";
+    }
+    @return map-get($z-layers, $layer);
+}

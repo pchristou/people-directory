@@ -1,1 +1,35 @@
-<p>user-form works!</p>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="user-form" autocomplete="off" novalidate>
+
+    <div class="form-row form-row--two">
+        <div class="form-group">
+            <input type="text" formControlName="firstName" placeholder="First Name" autocomplete="off">
+        </div>
+        <div class="form-group">
+            <input type="text" formControlName="lastName" placeholder="Last Name" autocomplete="off">
+        </div>
+    </div>
+
+    <div class="form-row form-row--three">
+        <div class="form-group">
+            <input type="text" formControlName="jobTitle" placeholder="Job Title" autocomplete="off">
+        </div>
+        <div class="form-group">
+            <input type="text" formControlName="phone" placeholder="Phone" autocomplete="off">
+            @if (userForm.get('phone')?.touched && userForm.get('phone')?.invalid) {
+                <small class="error-text">Invalid Phone</small>
+            }
+        </div>
+        <div class="form-group">
+            <input type="text" formControlName="email" placeholder="Email" autocomplete="off">
+            @if (userForm.get('email')?.touched && userForm.get('email')?.invalid) {
+                <small class="error-text">Invalid Email</small>
+            }
+        </div>
+    </div>
+
+    <div class="form-footer">
+        <button type="submit" [disabled]="userForm.invalid" class="submit-btn">
+            {{ 'create' | transloco }}
+        </button>
+    </div>
+</form>

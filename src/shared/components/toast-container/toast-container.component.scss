@@ -2,7 +2,7 @@
     position: fixed;
     top: 20px;
     right: 20px;
-    z-index: 9999; // PC TODO place z-index in standalone file
+    z-index: z('toast');
     display: flex;
     flex-direction: column;
     gap: 10px;
