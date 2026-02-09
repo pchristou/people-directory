@@ -1,7 +1,6 @@
 import { Component, ContentChild, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { debounceTime, distinctUntilChanged } from "rxjs/operators";
-import { DEBOUNCE_DELAY, MIN_CHAR_SEARCH } from "@shared/constants";
+import { MIN_CHAR_SEARCH } from "@shared/constants";
 import { CommonModule } from "@angular/common";
 import { TranslocoPipe } from "@jsverse/transloco";
 import { Subject } from "rxjs";

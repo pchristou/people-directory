@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslocoService } from "@jsverse/transloco";
 
@@ -13,11 +13,9 @@ import { TranslocoService } from "@jsverse/transloco";
   standalone: true
 })
 export class App {
-  protected readonly title = signal('People Directory');
-
   constructor(private translocoService: TranslocoService) {}
 
-  changeLanguage(lang: string) {
+  changeLanguage(lang: string): void {
     this.translocoService.setActiveLang(lang);
   }
 }

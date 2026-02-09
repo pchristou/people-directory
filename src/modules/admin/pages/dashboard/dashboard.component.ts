@@ -35,8 +35,8 @@ export class DashboardComponent implements OnInit {
     isLoading$!: Observable<boolean>;
     users$!: Observable<User[]>;
     selectedUsers$!: Observable<User[]>;
-    // Note that if the app grows and complexity increases, we can introduce a facadeService so only services
-    // interact with the store instead of a component directly injecting the store
+    // Note that if the app grows and complexity increases, we can introduce a facadeService so only these services
+    // interact with the store rather than a component directly injecting the store
     constructor(private store: Store<GlobalState>) {}
 
     ngOnInit(): void {

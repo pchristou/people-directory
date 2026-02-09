@@ -9,7 +9,7 @@
     width: 60%;
     margin: 0 auto;
 
-    /* Safety net for small screens */
+    /* Helps maintain a usable interface when the screen is small */
     @media (max-width: 1024px) {
         width: 90%;
     }

@@ -15,7 +15,7 @@ export const AdminActions = createActionGroup({
         'Search Users Failure': props<{ error: string }>(),
 
         // When the user clicks a result item in the list
-        'Select User': props<{ selectedUser: User }>(),
+        'Select User': props<{ selectedUser: User | null }>(),
 
         // Dispatched when attempting to add a user
         'Select User Attempt': props<{ selectedUser: User }>(),
