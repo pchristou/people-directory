@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {TypeaheadComponent} from '@shared/components/typeahead/typeahead.component';
 import { TranslocoPipe } from "@jsverse/transloco";
 import { User } from "@shared/models/user.model";
@@ -27,7 +27,8 @@ import { RouterLink, RouterOutlet } from "@angular/router";
     ],
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.scss',
-    standalone: true
+    standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent implements OnInit {
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PHONE_VALIDATION } from "@shared/utils/utils";
@@ -12,7 +12,8 @@ import { TranslocoPipe } from "@jsverse/transloco";
     standalone: true,
     imports: [CommonModule, ReactiveFormsModule, TranslocoPipe],
     templateUrl: './user-form.component.html',
-    styleUrls: ['./user-form.component.scss']
+    styleUrls: ['./user-form.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserFormComponent {
     userForm: FormGroup;

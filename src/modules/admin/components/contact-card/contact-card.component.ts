@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { User } from "@shared/models/user.model";
 
@@ -7,7 +7,8 @@ import { User } from "@shared/models/user.model";
   standalone: true,
   imports: [CommonModule],
   templateUrl: './contact-card.component.html',
-  styleUrl: './contact-card.component.scss'
+  styleUrl: './contact-card.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactCardComponent {
   @Input({ required: true }) user!: User;
