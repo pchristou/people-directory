@@ -1,5 +1,14 @@
 # People Directory
 
+## Features
+- Ngrx for state management
+- Language support for EN and FR (in places)
+- Ability to search for users
+- Ability to select users
+- Once you have added a user, you're unable to add the same user again
+- Users are stored in a JSON file the 'DB'. This is hosted in the People Directory Web API
+- Note that you're unable to create a new user if their email address already exists in the 'DB'
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.3.
 
 ## Development server
