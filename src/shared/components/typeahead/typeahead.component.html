@@ -16,13 +16,13 @@
             </button>
     </div>
 
-    @if (loading && searchControl.value!.length >= MIN_CHAR_SEARCH) {
+    @if (loading && minSearch) {
         <div class="loader-container">
             <span class="loader"></span> <p>{{ 'loading' | transloco }}</p>
         </div>
     }
 
-    @if (!loading && results && searchControl.value!.length >= MIN_CHAR_SEARCH) {
+    @if (!loading && results && minSearch) {
         <div class="typeahead__results-container">
                 <ul class="typeahead__list">
                 @for (item of results; track $index) {

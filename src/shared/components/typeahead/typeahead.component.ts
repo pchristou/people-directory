@@ -42,6 +42,10 @@ export class TypeaheadComponent<T> implements OnInit, OnDestroy {
         return this.searchControl.value || '';
     }
 
+    get minSearch(): boolean {
+        return this.searchControl.value!.length >= MIN_CHAR_SEARCH;
+    }
+
     selectItemResult(item: T): void {
         this.selectResult.emit(item);
         this.results = []
@@ -61,6 +65,4 @@ export class TypeaheadComponent<T> implements OnInit, OnDestroy {
         this.destroy$.next();
         this.destroy$.complete();
     }
-
-    protected readonly MIN_CHAR_SEARCH = MIN_CHAR_SEARCH;
 }

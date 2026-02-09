@@ -85,6 +85,9 @@ button {
     align-items: center;
     pointer-events: none;
     justify-content: center;
+    p {
+        margin-left: 12px;
+    }
 }
 
 .loader {
