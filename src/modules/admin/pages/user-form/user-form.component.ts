@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { PHONE_VALIDATION } from "@shared/utils/utils";
 import { GlobalState } from "../../store/admin.state";
 import { Store } from "@ngrx/store";
 import { AdminActions } from "../../store/actions/admin.actions";
 import { TranslocoPipe } from "@jsverse/transloco";
+import { APP_CONFIG } from "@shared/constants";
 
 @Component({
     selector: 'app-new-user-form',
@@ -23,7 +23,7 @@ export class UserFormComponent {
             firstName: ['', [Validators.required]],
             lastName: ['', [Validators.required]],
             jobTitle: ['', [Validators.required]],
-            phone: ['', [Validators.required, Validators.pattern(PHONE_VALIDATION)]],
+            phone: ['', [Validators.required, Validators.pattern(APP_CONFIG.VALIDATION.PHONE)]],
             email: ['', [Validators.required, Validators.email]]
         });
     }
@@ -31,7 +31,7 @@ export class UserFormComponent {
     /**
      * On submission of the form
      */
-    onSubmit() {
+    onSubmit(): void {
         if (this.userForm.valid) {
             this.store.dispatch(AdminActions.createUser({ user: this.userForm.value }));
         }

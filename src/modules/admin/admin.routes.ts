@@ -24,7 +24,9 @@ export const ADMIN_ROUTES: Routes = [
             },
             {
                 path: 'edit/:id',
-                component: UserFormComponent // Future feature, edit users
+                // Future feature, edit users.
+                // Something neat about this solution is being able to send the embedded link to other users
+                component: UserFormComponent
             }
         ]
     }

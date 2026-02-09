@@ -18,7 +18,7 @@ export class UserService implements LookupProvider {
      * Save a user
      * @param user
      */
-    saveUser(user: User): Observable<User | any> {
+    saveUser(user: User): Observable<User> {
         return this.http.post<User>(`${this.apiUrl}/users`, user);
     }
 
@@ -26,7 +26,7 @@ export class UserService implements LookupProvider {
      * Fetch users matching the searchTerm from the API
      * This could also be placed in its own UserLookupService
      */
-    search(searchTerm: string): Observable<User | any> {
+    search(searchTerm: string): Observable<User[]> {
         return this.http.get<User[]>(`${this.apiUrl}/users/search`, {params: {name: searchTerm}});
     }
 }

@@ -1,9 +1,9 @@
 import { Component, ContentChild, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
-import { MIN_CHAR_SEARCH } from "@shared/constants";
 import { CommonModule } from "@angular/common";
 import { TranslocoPipe } from "@jsverse/transloco";
 import { Subject } from "rxjs";
+import { APP_CONFIG } from "@shared/constants";
 
 @Component({
     selector: 'app-typeahead',
@@ -42,7 +42,7 @@ export class TypeaheadComponent<T> implements OnInit, OnDestroy {
     }
 
     get minSearch(): boolean {
-        return this.searchControl.value!.length >= MIN_CHAR_SEARCH;
+        return this.searchControl.value!.length >= APP_CONFIG.SEARCH.MIN_CHARS;
     }
 
     selectItemResult(item: T): void {

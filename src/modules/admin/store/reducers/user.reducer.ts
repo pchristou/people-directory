@@ -30,7 +30,7 @@ export const userReducer = createReducer(
             };
         }
 
-        const exists = state.selectedUsers.some(u => u.id === selectedUser?.id);
+        const exists = state.selectedUsers.some(user => user.id === selectedUser?.id);
         return {
             ...state,
             selectedUser: selectedUser,

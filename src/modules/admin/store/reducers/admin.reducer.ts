@@ -4,7 +4,7 @@ import { userReducer, UserState } from './user.reducer';
 export const adminFeatureKey = 'admin';
 
 export interface AdminState {
-    userSection: UserState; // if new sections were added in future, we could add more slices
+    userSection: UserState; // if new sections were added in the future, we could add more state slices
 }
 
 export const adminReducers: ActionReducerMap<AdminState> = {

@@ -8,12 +8,13 @@ describe('HighlightPipe', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      // Since it's a standalone pipe, we can just use the real sanitizer
-      // or provide a mock. For simple unit tests, the real one is fine.
       providers: [
         {
           provide: DomSanitizer,
           useValue: {
+            // mocking the sanitizer simplifies our test assertions
+            // without the mock, the assertion would look similar to:
+            // expect((result as any).changingThisBreaksApplicationSecurity).toContain('<mark>');
             bypassSecurityTrustHtml: (val: string) => `safe_${val}`
           }
         }

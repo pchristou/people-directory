@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import {TypeaheadComponent} from '@shared/components/typeahead/typeahead.component';
+import { TypeaheadComponent } from '@shared/components/typeahead/typeahead.component';
 import { TranslocoPipe } from "@jsverse/transloco";
 import { User } from "@shared/models/user.model";
 import { AdminActions } from "../../store/actions/admin.actions";
@@ -46,11 +46,11 @@ export class DashboardComponent implements OnInit {
         this.selectedUsers$ = this.store.select(selectSelectedUsers);
     }
 
-    onSearch(term: string) {
+    onSearch(term: string): void {
         this.store.dispatch(AdminActions.searchUsers({ searchTerm: term }));
     }
 
-    onUserSelected(user: User) {
+    onUserSelected(user: User): void {
         this.store.dispatch(AdminActions.selectUserAttempt({ selectedUser: user }));
     }
 }
