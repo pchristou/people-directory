@@ -2,5 +2,6 @@
   "loading": "Chargement",
   "searchPlaceholder": "rechercher un utilisateur…",
   "newUser": "Nouvel utilisateur +",
+  "noResults": "Aucun résultat trouvé",
   "go": "Aller!"
 }

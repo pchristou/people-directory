@@ -4,14 +4,20 @@
                 [loading]="isLoading$ | async"
                 [results]="users$ | async"
                 (search)="onSearch($event)"
-                (select)="onUserSelected($event)">
+                (selectResult)="onUserSelected($event)">
         >
             <ng-template #itemResultsTemplate let-user>
                 <span [innerHTML]="user.fullName | highlight: typeAhead.searchTerm"></span>
             </ng-template>
         </app-typeahead>
     </div>
+    <div class="dashboard__list">
+        <app-contact-card-list
+                [users]="(selectedUsers$ | async) || []">
+        </app-contact-card-list>
+    </div>
     <div class="dashboard__button">
         <button>{{ 'newUser' | transloco }}</button>
     </div>
+    <app-toast-container></app-toast-container>
 </div>

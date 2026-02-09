@@ -1,0 +1,22 @@
+:host {
+    display: block;
+    width: 100%;
+}
+
+.contact-grid {
+    display: grid;
+    /* Creates 3 equal columns */
+    grid-template-columns: repeat(3, 1fr);
+    /* Space between cards */
+    gap: 16px;
+    padding: 10px;
+
+    /* Responsive adjustment: drop to 2 columns on tablets, 1 on mobile */
+    @media (max-width: 992px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 600px) {
+        grid-template-columns: 1fr;
+    }
+}

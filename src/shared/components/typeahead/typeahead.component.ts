@@ -1,7 +1,7 @@
 import { Component, ContentChild, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef } from "@angular/core";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
-import { DEBOUNCE_DELAY } from "@shared/constants";
+import { DEBOUNCE_DELAY, MIN_CHAR_SEARCH } from "@shared/constants";
 import { CommonModule } from "@angular/common";
 import { TranslocoPipe } from "@jsverse/transloco";
 import { Subject } from "rxjs";
@@ -24,17 +24,15 @@ export class TypeaheadComponent<T> implements OnInit, OnDestroy {
     @Input() loading: boolean | null = false;
 
     @Output() search = new EventEmitter<string>();
-    @Output() select = new EventEmitter<T>();
+    @Output() selectResult = new EventEmitter<T>();
     @Output() submitted = new EventEmitter<string>();
 
     searchControl = new FormControl('');
     private destroy$ = new Subject<void>();
 
     ngOnInit(): void {
-        this.searchControl.valueChanges.pipe(
-            debounceTime(DEBOUNCE_DELAY),
-            distinctUntilChanged()
-        ).subscribe(term => {
+        this.searchControl.valueChanges
+        .subscribe(term => {
             this.search.emit(term || '');
         });
     }
@@ -44,15 +42,16 @@ export class TypeaheadComponent<T> implements OnInit, OnDestroy {
         return this.searchControl.value || '';
     }
 
-    selectResult(item: T): void {
-        this.select.emit(item);
+    selectItemResult(item: T): void {
+        this.selectResult.emit(item);
+        this.results = []
         this.searchControl.setValue('', { emitEvent: false });
     }
 
     submitSearch(): void {
         const term = this.searchControl.value?.trim();
         if (term) {
-            this.submitted.emit(term);
+            this.search.emit(term);
             // close the dropdown on submit
             this.results = [];
         }
@@ -62,4 +61,6 @@ export class TypeaheadComponent<T> implements OnInit, OnDestroy {
         this.destroy$.next();
         this.destroy$.complete();
     }
+
+    protected readonly MIN_CHAR_SEARCH = MIN_CHAR_SEARCH;
 }

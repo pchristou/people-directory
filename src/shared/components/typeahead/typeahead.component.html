@@ -22,20 +22,20 @@
         </div>
     }
 
-    @if (!loading && results && results.length > 0) {
+    @if (!loading && results && searchControl.value!.length >= MIN_CHAR_SEARCH) {
         <div class="typeahead__results-container">
-
                 <ul class="typeahead__list">
-                @for (item of results; track item) {
-                    <li (click)="selectResult(item)" class="typeahead__item">
+                @for (item of results; track $index) {
+                    <li (click)="selectItemResult(item)" class="typeahead__item">
                         <ng-container
                                 [ngTemplateOutlet]="itemResultsTemplate || defaultTemplate"
                                 [ngTemplateOutletContext]="{ $implicit: item }">
                         </ng-container>
                     </li>
-                }
-                @if (results.length === 0) {
-                    <li class="typeahead__item typeahead__item--empty">No results found</li>
+                } @empty {
+                    <li class="typeahead__item typeahead__item--empty">
+                        {{ 'noResults' | transloco }}
+                    </li>
                 }
                 </ul>
 

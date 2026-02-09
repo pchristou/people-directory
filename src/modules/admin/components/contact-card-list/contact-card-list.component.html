@@ -1,0 +1,17 @@
+<div class="contact-list">
+    @if (users.length > 0) {
+        <div class="contact-list__grid">
+            @for (user of users; track user.id) {
+                <div class="contact-list__item">
+                    <app-contact-card [user]="user"></app-contact-card>
+                </div>
+            }
+        </div>
+    }
+    <!-- Option to show a message if no users are currently selected -->
+<!--    @else {-->
+<!--        <div class="contact-list__empty">-->
+<!--            <p class="contact-list__empty-text">No users selected yet.</p>-->
+<!--        </div>-->
+<!--    }-->
+</div>

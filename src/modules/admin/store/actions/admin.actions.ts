@@ -1,22 +1,29 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { UserState } from "../reducers/user.reducer";
+import { User } from "@shared/models/user.model";
 
 export const AdminActions = createActionGroup({
     source: 'Dashboard Component',
     events: {
-        // 1. The Trigger: Dispatched from the component on input
+        // Dispatched when searching for users
         'Search Users': props<{ searchTerm: string }>(),
 
-        // 2. The Success: Dispatched by the Effect after API returns data
-        'Search Users Success': props<{ results: UserState['userResults'] }>(),
+        // Dispatched by the Effect after API returns data
+        'Search Users Success': props<{ results: User[] }>(),
 
-        // 3. The Failure: Dispatched by the Effect if the API crashes
+        // Dispatched by the Effect if the API errors and, we fail to retrieve user results
         'Search Users Failure': props<{ error: string }>(),
 
-        // 4. The Selection: When the user clicks an item in the list
-        'User Selected': props<{ selectedUser: UserState['selectedUser'] }>(),
+        // When the user clicks a result item in the list
+        'Add User': props<{ selectedUser: UserState['selectedUser'] }>(),
 
-        // 5. The Reset: To clear the list and the selection
+        // Dispatched when attempting to add a user
+        'Add User Attempt': props<{ selectedUser: UserState['selectedUser'] }>(),
+
+        // When the user has already been added
+        'Duplicate User Selected': props<{ message: string }>(),
+
+        // Clear the results and input
         'Clear Selection': emptyProps(),
     }
 });

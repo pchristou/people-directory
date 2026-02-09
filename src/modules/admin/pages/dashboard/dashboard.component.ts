@@ -5,10 +5,12 @@ import { User } from "@shared/models/user.model";
 import { AdminActions } from "../../store/actions/admin.actions";
 import { Store } from "@ngrx/store";
 import { GlobalState } from "../../store/admin.state";
-import { selectUserSectionLoading, selectUsers } from "../../store/selectors/admin.selectors";
+import { selectUserSectionLoading, selectUsers, selectSelectedUsers } from "../../store/selectors/admin.selectors";
 import { Observable } from "rxjs";
 import { AsyncPipe } from "@angular/common";
 import { HighlightPipe } from "@shared/pipes/highlight.pipe";
+import { ToastContainerComponent } from "@shared/components/toast-container/toast-container.component";
+import { ContactCardListComponent } from "../../components/contact-card-list/contact-card-list.component";
 
 @Component({
     selector: 'app-landing',
@@ -16,7 +18,9 @@ import { HighlightPipe } from "@shared/pipes/highlight.pipe";
         TypeaheadComponent,
         TranslocoPipe,
         AsyncPipe,
-        HighlightPipe
+        HighlightPipe,
+        ToastContainerComponent,
+        ContactCardListComponent
     ],
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.scss',
@@ -26,6 +30,7 @@ export class DashboardComponent implements OnInit {
 
     isLoading$!: Observable<boolean>;
     users$!: Observable<User[]>;
+    selectedUsers$!: Observable<User[]>;
     // Note that if the app grows and complexity increases, we can introduce a facadeService so only services
     // interact with the store instead of a component directly injecting the store
     constructor(private store: Store<GlobalState>) {}
@@ -34,6 +39,7 @@ export class DashboardComponent implements OnInit {
         // Select the results from the nested state we built earlier
         this.isLoading$ = this.store.select(selectUserSectionLoading);
         this.users$ = this.store.select(selectUsers);
+        this.selectedUsers$ = this.store.select(selectSelectedUsers);
     }
 
     onSearch(term: string) {
@@ -41,6 +47,6 @@ export class DashboardComponent implements OnInit {
     }
 
     onUserSelected(user: User) {
-        this.store.dispatch(AdminActions.userSelected({ selectedUser: user }));
+        this.store.dispatch(AdminActions.addUserAttempt({ selectedUser: user }));
     }
 }

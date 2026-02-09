@@ -1,0 +1,49 @@
+.contact-card {
+    color: var(--colour-white);
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    font-size: var(--font-size-sm);
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    max-width: 300px;
+    border: 1px solid var(--colour-white);
+    flex: 1;
+
+    &__avatar-container {
+        margin-bottom: 1rem;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    &__name {
+        font-size: var(--font-size-sm);
+        margin: 0;
+        font-weight: var(--font-weight-bold);
+    }
+
+    &__jobTitle {
+        margin: 0;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    &__details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem;
+    }
+
+    &__detail {
+        font-size: 0.85rem;
+
+        &--phone {
+            font-weight: var(--font-weight-regular);
+        }
+    }
+}
