@@ -1,17 +1,28 @@
-# People Directory
+# People Directory UI
 
 ![People Directory Homepage](directory.png)
 
-## Features
-- Ngrx for state management
-- Language support for EN and FR (in places)
-- Ability to search for users
-- Ability to select users
-- Once you have added a user, you're unable to add the same user again
-- Users are stored in a JSON file the 'DB'. This is hosted in the People Directory Web API
-- Note that you're unable to create a new user if their email address already exists in the 'DB'
+## Key Features
+- State Management: Powered by NgRx, utilizing a centralized store for user data, search states, and selection logic.
+
+- Internationalization (i18n): Support for English and French (EN/FR) localized strings.
+
+- Smart Search: Real-time filtering with results provided by the .NET backend.
+
+- Business Logic:
+
+  - Prevention of duplicate user selection.
+
+  - Validation against existing emails in the JSON 'DB'.
+
+  - Reactive UI updates based on store state.
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.3.
+
+## Tech Stack
+- Framework: Angular 21
+- State: NgRx (Store, Effects, Selectors)
+- Testing: Vitest (Unit)
 
 ## Development server
 
@@ -22,20 +33,6 @@ ng serve
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
 
 ## Building
 
@@ -55,16 +52,4 @@ To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use th
 ng test
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
 Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
