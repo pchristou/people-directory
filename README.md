@@ -1,5 +1,7 @@
 # People Directory UI
 
+A modern, reactive user management dashboard built with Angular. This frontend interacts with the [People Directory API](https://github.com/pchristou/people-directory-api).
+
 ![People Directory Homepage](directory.png)
 
 ## Key Features
